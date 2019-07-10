@@ -27,22 +27,25 @@
         <h1>洪泽分局交通违法录入平台</h1>
     </div>
     <div class="login-box">
-        @include('shared._errors')
         <form class="login-form" action="{{ route('login') }}" method="POST">
+            {{ csrf_field() }}
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>登录</h3>
+
+            @include('shared._errors')
+
             <div class="form-group">
                 <label class="control-label">用户名</label>
-                <input class="form-control" type="text" placeholder="用户名" autofocus>
+                <input class="form-control" type="text" placeholder="用户名" name="name" autofocus>
             </div>
             <div class="form-group">
                 <label class="control-label">密码</label>
-                <input class="form-control" type="password" placeholder="密码">
+                <input class="form-control" type="password" name="password" placeholder="密码">
             </div>
             <div class="form-group">
                 <div class="utility">
                     <div class="animated-checkbox">
                         <label>
-                            <input type="checkbox"><span class="label-text">记住我</span>
+                            <input type="checkbox" name="remember"><span class="label-text">记住我</span>
                         </label>
                     </div>
                     <p class="semibold-text mb-2"><a href="#" data-toggle="flip">忘记密码 ?</a></p>

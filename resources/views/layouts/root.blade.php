@@ -42,14 +42,24 @@
     <ul class="app-nav">
       <!--Notification Menu-->
       <!-- User Menu-->
+      @if (Auth::check())
       <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
-        class="fa fa-user fa-lg"></i></a>
+        class="fa fa-user fa-lg"></i><span style="font-size: 16px">&nbsp;{{ Auth::user()->name }}</span></a>
         <ul class="dropdown-menu settings-menu dropdown-menu-right">
           <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
           <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i>个人信息</a></li>
-          <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i>退出</a></li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <form action="{{ route('logout') }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button class="btn btn-block btn-danger" type="submit" name="button">退出</button>
+              </form>
+            </a>
+          </li>
         </ul>
       </li>
+      @endif
     </ul>
   </header>
   <!-- Sidebar menu-->
