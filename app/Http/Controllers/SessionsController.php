@@ -20,8 +20,8 @@ class SessionsController extends Controller
         ]);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            session()->flash('success', '欢迎回来！');
-            return redirect()->route('root', [Auth::user()]);
+             session(['user'=> Auth::user()]);
+            return redirect()->route('root');
         } else {
             session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
             return redirect()->back()->withInput();
@@ -32,7 +32,8 @@ class SessionsController extends Controller
     public function destroy()
     {
         Auth::logout();
-        session()->flash('success', '您已成功退出！');
+        session()->forget('user');
+        // session()->flash('success', '您已成功退出！');
         return redirect('login');
     }
 }
