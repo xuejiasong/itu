@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
 
     public function show(User $user)
     {
@@ -16,12 +25,19 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->all());
+        $this->authorize('update', $user);
+        $data = [];
+        $data['name'] = $request->name;
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+        $user->update($data);
         session()->flush('success', '个人信息更新成功');
 
         return view('users.show',compact('user'));

@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
-            'password' => 'required|min:6',
+            'password' => 'nullable|confirmed|min:6',
             'introduction' => 'max:80',
         ];
     }

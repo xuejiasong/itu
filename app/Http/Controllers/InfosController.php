@@ -7,4 +7,9 @@ use Illuminate\Http\Request;
 class InfosController extends Controller
 {
     //
+    public function index()
+    {
+   
+
+    }
 }
