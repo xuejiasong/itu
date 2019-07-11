@@ -14,6 +14,8 @@ Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
+Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
+
 Route::group(['middleware' => 'check.login'], function() {
 	Route::get('/', function () {
 		return view('home.index');

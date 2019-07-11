@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
-    public function create()
-    {
-        return view('users.create');
-    }
 
     public function show(User $user)
     {
         return view('users.show', compact('user'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        $user->update($request->all());
+        session()->flush('success', '个人信息更新成功');
+
+        return view('users.show',compact('user'));
     }
 
     public function store(Request $request)

@@ -46,8 +46,8 @@
       <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
         class="fa fa-user fa-lg"></i><span style="font-size: 16px">&nbsp;{{ Auth::user()->name }}</span></a>
         <ul class="dropdown-menu settings-menu dropdown-menu-right">
-          <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
-          <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i>个人信息</a></li>
+          <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
+          <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}"><i class="fa fa-user fa-lg"></i>个人信息</a></li>
           <li>
             <a class="dropdown-item" href="#">
               <form action="{{ route('logout') }}" method="POST">

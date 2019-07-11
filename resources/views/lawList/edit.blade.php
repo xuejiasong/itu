@@ -53,7 +53,7 @@
                                 <div class="form-group row">
                                     <label class="control-label col-md-3">抓拍图片</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" type="file" id="take" name="take">
+                                        <input class="form-control" type="file" id="take" name="takeImg">
                                     </div>
                                 </div>
                             </div>
